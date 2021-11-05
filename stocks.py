@@ -9,7 +9,11 @@ def stocks(bot,trigger):
         headers = {'x-api-key': "FAKE_API_KEY"}
         try:
             response = requests.request("GET", url, headers=headers, params=querystring)
-            stock = response.json()['quoteResponse']['result'][0]
+            # sometimes we get a 200 but with no json, eg: when the URL has changed
+            try:
+                stock = response.json()['quoteResponse']['result'][0]
+            except:
+                return bot.say("An error ocurred, decoding json")   
         except requests.exceptions.RequestException as e:
             return bot.say("An error ocurred")
     else:
