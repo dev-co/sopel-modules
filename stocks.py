@@ -4,7 +4,7 @@ import requests
 @sopel.module.commands('dji','stocks','stock')
 def stocks(bot,trigger):
     if trigger.group(2):
-        url = "https://rest.yahoofinanceapi.com/v6/finance/quote"
+        url = "https://yfapi.net/v6/finance/quote"
         querystring = {"symbols": trigger.group(2)}
         headers = {'x-api-key': "FAKE_API_KEY"}
         try:
