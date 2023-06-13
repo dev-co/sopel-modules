@@ -49,6 +49,9 @@ def output_status(bot, trigger, id_):
     if response.status_code != 200:
         logger.error('%s error reaching the twitter API for status ID %s',
                      response.status_code, id_)
+        fuck_elon = json.loads(response.content.decode('utf-8'))
+        bot.say("[Twitter] Elon did it again: " + fuck_elon['title'] + ": " + fuck_elon['detail'])
+        return
 
     # tweet = json.loads(content.decode('utf-8'))
     tweet = json.loads(response.content.decode('utf-8'))
